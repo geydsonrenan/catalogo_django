@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block 'cabeçalho' %}
+<link href="{% static 'catalogo/css/catalogo.css' %}" rel="stylesheet" type="text/css">
+<title>Nosso catálogo de produtos</title>
+{% endblock %}
+
+{% block 'corpo' %}
+
+<header>
+
+    <img id="imagem_logo" src="{% static 'catalogo/img/logo.png' %}" width="220" height="120">
+
+</header>
+
+<main>
+
+    <section>
+            <form action="{% url 'catalogo' %}" method="POST"> {% csrf_token %}
+                <div class="input-group mb-3" id="div-inputbar">
+                    <input type="text" class="form-control" placeholder="Digite o nome de um produto" aria-label="Recipient's username" aria-describedby="button-addon2" name="pesquisa">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2" >Filtrar</button>
+                </div>
+            </form>
+    </section> 
+    <section id="section_produtos">
+        {% if not produtos %}
+            <h2 style="color: white;">Não houve resultados a partir dessa busca.</h2>
+        {% endif %}
+
+        {% for produto in produtos %}
+        <div class="div_produtos">
+            <img src="{{produto.foto.url}}" class="imagem_produtos">
+            <div class="text_produtos"> {{produto}} </div>
+        </div>
+        {% endfor %}
+    </section>
+
+</main>
+
+<footer>
+
+    <section id="section_footer">
+        <h2>Direitos autorais</h2>
+        <p id="p_footer">Copyright - Todos os direitos reservados | Desenvolvido por GEYDSON </p>
+    </section>
+
+</footer>
+
+{% endblock %}
