@@ -86,16 +86,7 @@ WSGI_APPLICATION = 'cardapio_de_produtos.wsgi.application'
 #}
 #DATABASE_URL='postgres://catalogo:Du6fVX1nkxdUNIM@postgresql-catalogo.flycast:5432/catalogo'
 
-DATABASES = {
-    'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-       'NAME': 'postgresql_catalogo',
-       'USER': 'postgresql_catalogo_user',
-       'PASSWORD': '5Au5HeOtQrNNiokC5vZSIfoJFCCYfv9M',
-       'HOST': 'dpg-cmqkqgacn0vc73doqhr0-a.oregon-postgres.render.com',
-       'PORT': '',
-    }
-}
+DATABASES = config('DATABASES')
 
 
 # Password validation
